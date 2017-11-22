@@ -1,0 +1,16 @@
+service: serverroommonitor
+
+provider:
+  name: aws
+  stage: beta
+  region: eu-central-1
+  runtime: nodejs6.10
+
+functions:
+  poll:
+    handler: handler.poll
+    events:
+      - http:
+          path: environment/poll/server
+          method: get
+      - schedule: rate(30 minutes)
