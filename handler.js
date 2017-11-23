@@ -25,11 +25,12 @@ module.exports.poll = (event, context, callback) => {
 
             const params = {
               Subject: `Temperature High: ${result.temperature}`,
-              Message: `The latest temperature reading from ${time.toISOString()} is ${result.temperature}`,
+              Message: `The latest temperature reading from ${time.toISOString()} is ${result.temperature}. 
+                If the problem persists, please call in a service person; Gidex (+45 86 88 34 22).`,
               TopicArn: process.env.SNS_TOPIC
             };
 
-            sns.publish(params, (error, data) => {
+            sns.publish(params, (error) => {
               if (error) {
                 callback(error);
               }
